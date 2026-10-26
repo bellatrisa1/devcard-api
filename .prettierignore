@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-test/
+src/generated/
+.local/
+.git/
+.env
+.env.*
+*.log
+package-lock.json
+# Database migrations must not be rewritten by a formatter.
+prisma/migrations/
+# Prisma schema uses its own native formatter.
+prisma/schema.prisma

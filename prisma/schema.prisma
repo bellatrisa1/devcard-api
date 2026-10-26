@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Profile {
+  id          String @id
+  name        String
+  headline    String
+  description String
+  githubUrl   String
+  telegramUrl String
+  skills      ProfileSkill[]
+  experience  Experience[]
+  projects    Project[]
+}
+
+model Skill {
+  id       String @id
+  slug     String @unique
+  name     String
+  profiles ProfileSkill[]
+}
+
+model ProfileSkill {
+  profileId    String
+  skillId      String
+  displayOrder Int
+  profile      Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  skill        Skill @relation(fields: [skillId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, skillId])
+  @@index([profileId, displayOrder, skillId])
+  @@index([skillId])
+}
+
+model Experience {
+  id           String @id
+  profileId    String
+  company      String
+  position     String
+  startDate    DateTime @db.Date
+  endDate      DateTime? @db.Date
+  displayOrder Int
+  profile      Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  achievements ExperienceAchievement[]
+
+  @@index([profileId, displayOrder, id])
+}
+
+model ExperienceAchievement {
+  id           String @id
+  experienceId String
+  text         String
+  displayOrder Int
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+
+  @@index([experienceId, displayOrder, id])
+}
+
+model Project {
+  id            String @id
+  profileId     String
+  name          String
+  description   String
+  repositoryUrl String?
+  demoUrl       String?
+  displayOrder  Int
+  profile       Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId, displayOrder, id])
+}

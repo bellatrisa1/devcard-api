@@ -1,0 +1,62 @@
+{
+  "name": "devcard-api-test",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0 <23 || >=24.11.0 <25"
+  },
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "build": "npm run prisma:generate && tsc -p tsconfig.build.json",
+    "start": "node scripts/start.mjs",
+    "start:dev": "npm run dev",
+    "dev": "npm run prisma:generate && tsc-watch -p tsconfig.build.json --onSuccess 'node --env-file=.env dist/main.js'",
+    "lint": "eslint src test prisma scripts prisma.config.ts",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test dist-test/test/*.test.js",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:prepare": "node scripts/prepare.mjs",
+    "test:database": "npm run build && node --test test/*.database.test.mjs",
+    "test:graphql": "npm run build && tsc -p tsconfig.test.json && node --test dist-test/test/graphql.test.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@apollo/server": "5.5.1",
+    "@as-integrations/express5": "1.1.2",
+    "@nestjs/apollo": "14.0.3",
+    "@nestjs/common": "12.2.0",
+    "@nestjs/config": "12.0.1",
+    "@nestjs/core": "12.2.0",
+    "@nestjs/graphql": "14.0.3",
+    "@nestjs/platform-express": "12.2.0",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "dotenv": "18.0.9",
+    "graphql": "16.14.2",
+    "prisma": "7.10.1",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@nestjs/testing": "12.2.0",
+    "@types/node": "22.20.5",
+    "@types/supertest": "7.2.1",
+    "eslint": "10.13.0",
+    "prettier": "3.9.10",
+    "supertest": "7.3.1",
+    "tsc-watch": "7.2.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.0"
+  },
+  "overrides": {
+    "multer": "2.5.0",
+    "@nestjs/graphql": {
+      "@graphql-tools/utils": "12.0.4"
+    }
+  }
+}

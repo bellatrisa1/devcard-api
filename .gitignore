@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-test/
+src/generated/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Local PostgreSQL data
+.local/
