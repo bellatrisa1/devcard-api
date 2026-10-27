@@ -41,7 +41,7 @@ docker compose down
 
 `down` сохраняет БД. Флаг `-v` удаляет её volume.
 
-> Dockerfile и Compose подготовлены, но их выполнение в контейнерах ещё не проверено. Проверки приложения выполнялись с реальным PostgreSQL вне Docker. Для отдельного контейнерного прогона есть [инструкция приёмки](docs/docker-acceptance.md).
+> Docker-сборка и запуск на чистой БД проверены 27.10.2026 на Docker Desktop (Linux/arm64), включая повторный seed, отказ/восстановление БД и graceful shutdown. Для повторения проверки есть [инструкция приёмки](docs/docker-acceptance.md).
 
 ### Без Docker
 
@@ -288,7 +288,7 @@ curl -i http://localhost:3000/health/ready
 
 Подготовлен вариант **Render: один Docker Web Service и одна PostgreSQL**. Инструкция описывает переменные окружения, internal connection, `/health/ready`, startup и выбор региона/тарифа: **[настройка Render](docs/render.md)**.
 
-Публичный экземпляр пока не развёрнут. Docker runtime-проверка остаётся открытой; интерфейс Sandbox и точный запрос проверены в Chromium с production-конфигурацией вне контейнера. Подробные результаты вынесены в **[отчёт приёмки](docs/acceptance.md)**.
+Публичный экземпляр пока не развёрнут. Docker-сборка, Compose startup и интерфейс Sandbox проверены: точный запрос выполнен в Chromium против контейнерного приложения в production-режиме. Подробные результаты вынесены в **[отчёт приёмки](docs/acceptance.md)**.
 
 ## Работа с кодом
 
