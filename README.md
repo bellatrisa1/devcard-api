@@ -5,8 +5,6 @@
   Профиль, навыки, опыт работы, достижения и проекты — в одном запросе.
 </p>
 
-🌐 Live Demo: https://devcard-api-0xmn.onrender.com/graphql
-
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js" />
@@ -23,6 +21,8 @@
   <a href="#архитектура">Архитектура</a> ·
   <a href="#проверки">Проверки</a>
 </p>
+
+🌐 Live Demo: https://devcard-api-0xmn.onrender.com/graphql
 
 ---
 
